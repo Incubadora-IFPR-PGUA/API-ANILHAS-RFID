@@ -18,6 +18,12 @@ module.exports = {
         allowNull: false,
         unique: true
       },
+      entrada: {
+        type: Sequelize.DATE,
+      },
+      saida: {
+        type: Sequelize.DATE,
+      },
       createdAt: {
         type: Sequelize.DataTypes.DATE,
         allowNull: false,
