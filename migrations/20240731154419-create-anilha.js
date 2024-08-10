@@ -19,19 +19,19 @@ module.exports = {
         unique: true
       },
       createdAt: {
-        type: DataTypes.DATE,
+        type: Sequelize.DataTypes.DATE,
         allowNull: false,
-        defaultValue: DataTypes.NOW,
+        defaultValue: Sequelize.DataTypes.NOW,
       },
       updatedAt: {
-        type: DataTypes.DATE,
+        type: Sequelize.DataTypes.DATE,
         allowNull: false,
-        defaultValue: DataTypes.NOW,
+        defaultValue: Sequelize.DataTypes.NOW,
       },
       deletedAt: {
-        type: DataTypes.DATE,
-        allowNull: true,
-      }
+        type: Sequelize.DataTypes.DATE,
+        allowNull: true,
+      }
     });
   },
 
