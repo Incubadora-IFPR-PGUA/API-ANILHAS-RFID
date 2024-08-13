@@ -92,24 +92,3 @@ export const atualizarCliente = async (req: Request, res: Response) => {
     res.status(500).json({ message: "Erro ao atualizar cliente" });
   }
 };
-
-export const incluirCliente = async (req: Request, res: Response) => {
-  try {
-    const { nome, sobrenome, cpf } = req.body;
-
-    // Verifica se o CPF já existe no banco de dados
-    const clienteExistente = await Cliente.findOne({ where: { cpf } });
-
-    if (clienteExistente) {
-      return res.status(400).json({ message: "CPF já cadastrado" });
-    }
-
-    // Se o CPF não existir, cria um novo cliente
-    const novoCliente = await Cliente.create({ nome, sobrenome, cpf });
-
-    res.status(201).json(novoCliente);
-  } catch (error) {
-    console.error("Erro ao incluir cliente:", error);
-    res.status(500).json({ message: "Erro ao incluir cliente" });
-  }
-};
