@@ -50,3 +50,21 @@ export const getAnilhaById = async (req: Request, res: Response) => {
   }
 };
 
+export const atualizarAnilha = async (req: Request, res: Response) => {
+  try {
+    const anilhaId = parseInt(req.params.idAnilha, 10);
+    const { nome, entrada, saida } = req.body;
+
+    const anilha = await Anilha.findByPk(anilhaId);
+
+    if (anilha) {
+      await anilha.update({ nome, entrada, saida });
+      res.json(anilha);
+    } else {
+      res.status(404).json({ message: "Anilha não encontrado" });
+    }
+  } catch (error) {
+    console.error("Erro ao atualizar anilha:", error);
+    res.status(500).json({ message: "Erro ao atualizar anilha" });
+  }
+};
