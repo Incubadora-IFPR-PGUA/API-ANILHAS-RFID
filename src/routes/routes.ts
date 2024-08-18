@@ -8,7 +8,7 @@ const router = Router();
 router.get("/listarAnilha", AnilhaController.listarAnilha);
 router.post("/inserirAnilha", AnilhaController.inserirAnilha);
 router.get("/listarAnilha/:idAnilha", AnilhaController.getAnilhaById); 
-// router.delete("/excluirCliente/:idCliente", ClienteController.excluirCliente);
+router.delete("/excluirAnilha/:idAnilha", AnilhaController.excluirAnilha);
 router.put("/atualizarAnilha/:idAnilha", AnilhaController.atualizarAnilha);
 
 export default router;
