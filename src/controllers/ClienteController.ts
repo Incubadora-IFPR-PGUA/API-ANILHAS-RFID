@@ -1,39 +1,3 @@
-import { Request, Response } from "express";
-import { Produto } from "../models/Produto";
-import { Cliente } from "../models/Anilha";
-import { Pedido } from "../models/Pedido";
-import { Op } from "sequelize";
-
-export const listarClientes = async (req: Request, res: Response) => {
-  try {
-    const clientes = await Cliente.findAll();
-    if (clientes.length === 0) {
-      res.status(404).json({ message: "Não há nenhum cliente para listar"});
-    } else {
-      res.json({ clientes });
-    }
-  } catch (error) {
-    console.error("Erro ao listar clientes:", error);
-    res.status(500).json({ message: "Erro ao listar clientes" });
-  }
-};
-
-export const getClienteById = async (req: Request, res: Response) => {
-  try {
-    const clienteId = parseInt(req.params.idCliente, 10); // Obter o ID do cliente a partir dos parâmetros da solicitação
-    const cliente = await Cliente.findByPk(clienteId);
-
-    if (cliente) {
-      res.json(cliente); // Cliente encontrado, retorne-o como resposta
-    } else {
-      res.status(404).json({ message: "Cliente não encontrado" }); // Cliente não encontrado
-    }
-  } catch (error) {
-    console.error("Erro ao buscar cliente:", error);
-    res.status(500).json({ message: "Erro ao buscar cliente" });
-  }
-};
-
 export const excluirCliente = async (req: Request, res: Response) => {
   try {
     const clienteId = parseInt(req.params.idCliente, 10);
@@ -56,39 +20,5 @@ export const excluirCliente = async (req: Request, res: Response) => {
   } catch (error) {
     console.error("Erro ao excluir cliente:", error);
     res.status(500).json({ message: "Erro ao excluir cliente" });
-  }
-};
-
-export const atualizarCliente = async (req: Request, res: Response) => {
-  try {
-    const clienteId = parseInt(req.params.idCliente, 10);
-    const { nome, sobrenome, cpf } = req.body;
-
-    // Verificar se o CPF já está sendo usado por outro cliente
-    const cpfExistente = await Cliente.findOne({
-      where: {
-        cpf,
-        id: {
-          [Op.not]: clienteId, // Garante que não estamos comparando com o mesmo cliente
-        },
-      },
-    });
-
-    if (cpfExistente) {
-      res.status(400).json({ message: "CPF já está sendo usado por outro cliente" });
-      return;
-    }
-
-    const cliente = await Cliente.findByPk(clienteId);
-
-    if (cliente) {
-      await cliente.update({ nome, sobrenome, cpf });
-      res.json(cliente);
-    } else {
-      res.status(404).json({ message: "Cliente não encontrado" });
-    }
-  } catch (error) {
-    console.error("Erro ao atualizar cliente:", error);
-    res.status(500).json({ message: "Erro ao atualizar cliente" });
   }
 };
