@@ -53,12 +53,12 @@ export const getAnilhaById = async (req: Request, res: Response) => {
 export const atualizarAnilha = async (req: Request, res: Response) => {
   try {
     const anilhaId = parseInt(req.params.idAnilha, 10);
-    const { nome, entrada, saida } = req.body;
+    const { nome, entrada, saida } = req.body; // Remove 'codigo' da desestruturação
 
     const anilha = await Anilha.findByPk(anilhaId);
 
     if (anilha) {
-      await anilha.update({ nome, entrada, saida });
+      await anilha.update({ nome, entrada, saida }); // Não inclui 'codigo' aqui
       res.json(anilha);
     } else {
       res.status(404).json({ message: "Anilha não encontrado" });
@@ -66,5 +66,23 @@ export const atualizarAnilha = async (req: Request, res: Response) => {
   } catch (error) {
     console.error("Erro ao atualizar anilha:", error);
     res.status(500).json({ message: "Erro ao atualizar anilha" });
+  }
+};
+
+export const excluirAnilha = async (req: Request, res: Response) => {
+  try {
+    const anilhaId = parseInt(req.params.idAnilha, 10);
+    const anilha = await Anilha.findByPk(anilhaId);
+
+    if (!anilha) {
+      return res.status(404).json({ message: "Anilha não encontrada!" });
+    }
+
+    await anilha.destroy();
+    res.json({ message: "Anilha excluída com sucesso" });
+    
+  } catch (error) {
+    console.error("Erro ao excluir anilha:", error);
+    res.status(500).json({ message: "Erro ao excluir anilha" });
   }
 };
