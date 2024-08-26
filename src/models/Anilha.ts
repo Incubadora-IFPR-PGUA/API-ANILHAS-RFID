@@ -49,7 +49,7 @@ Anilha.init(
   },
   {
     sequelize,
-    tableName: "anilhas",
+    tableName: "anilhas-cadastros",
     timestamps: true,
     paranoid: true,
     createdAt: "createdAt",
