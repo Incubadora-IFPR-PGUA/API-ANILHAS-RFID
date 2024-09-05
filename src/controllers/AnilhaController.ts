@@ -7,7 +7,8 @@ export const inserirAnilha = async (req: Request, res: Response) => {
     const codigoExistente = await Anilha.findOne({ where: { codigo } });
 
     if (codigoExistente) {
-      return res.status(400).json({ message: "Anilha já cadastrada!!" });
+      alertAnilhaExistente(req, res);
+      return res.status(400).json({ message: "Anilha já cadastrada!!", codigoExistente});
     }
 
     const novaAnilha = await Anilha.create({ nome, codigo, entrada, saida });
@@ -18,6 +19,8 @@ export const inserirAnilha = async (req: Request, res: Response) => {
     res.status(500).json({ message: "Erro ao incluir anilha" });
   }
 };
+
+
 
 export const listarAnilha = async (req: Request, res: Response) => {
   try {
@@ -85,4 +88,8 @@ export const excluirAnilha = async (req: Request, res: Response) => {
     console.error("Erro ao excluir anilha:", error);
     res.status(500).json({ message: "Erro ao excluir anilha" });
   }
+};
+
+export const alertAnilhaExistente = async (req: Request, res: Response) => {
+  
 };
