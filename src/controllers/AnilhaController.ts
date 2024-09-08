@@ -32,6 +32,8 @@ export const inserirAnilha = async (req: Request, res: Response) => {
   }
 };
 
+//#region Anilhas Cadastradas
+
 export const listarAnilhaCadastradas = async (req: Request, res: Response) => {
   try {
     const anilhas = await AnilhaCadastrada.findAll();
@@ -41,6 +43,68 @@ export const listarAnilhaCadastradas = async (req: Request, res: Response) => {
     res.status(500).json({ message: 'Erro interno do servidor' });
   }
 };
+
+export const atualizarAnilhaCadastrada = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const { name, codigo } = req.body;
+
+    console.log(id, name, codigo);
+
+    const anilha = await AnilhaCadastrada.findByPk(id);
+    if (!anilha) {
+      return res.status(404).json({ message: 'Anilha não encontrada' });
+    }
+
+    anilha.name = name;
+    anilha.codigo = codigo;
+
+    await anilha.save();
+
+    res.status(200).json({ message: 'Anilha atualizada com sucesso', anilha });
+  } catch (error) {
+    console.error('Erro ao atualizar anilha cadastrada:', error);
+    res.status(500).json({ message: 'Erro interno do servidor' });
+  }
+};
+
+export const getAnilhaCadastradaById = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+
+    const anilha = await AnilhaCadastrada.findByPk(id);
+    if (!anilha) {
+      return res.status(404).json({ message: 'Anilha não encontrada' });
+    }
+
+    res.status(200).json(anilha);
+  } catch (error) {
+    console.error('Erro ao buscar anilha cadastrada pelo ID:', error);
+    res.status(500).json({ message: 'Erro interno do servidor' });
+  }
+};
+
+export const excluirAnilhaCadastrada = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+
+    const anilha = await AnilhaCadastrada.findByPk(id);
+    if (!anilha) {
+      return res.status(404).json({ message: 'Anilha não encontrada' });
+    }
+
+    await anilha.destroy();
+
+    res.status(200).json({ message: 'Anilha excluída com sucesso' });
+  } catch (error) {
+    console.error('Erro ao excluir anilha cadastrada:', error);
+    res.status(500).json({ message: 'Erro interno do servidor' });
+  }
+};
+
+//#endregion
+
+//#region Anilhas Pendentes
 
 export const listarAnilhaPendentes = async (req: Request, res: Response) => {
   try {
@@ -54,6 +118,68 @@ export const listarAnilhaPendentes = async (req: Request, res: Response) => {
   }
 };
 
+export const atualizarAnilhaPendente = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const { name, codigo } = req.body;
+
+    console.log(id, name, codigo);
+
+    const anilha = await AnilhaPendente.findByPk(id);
+    if (!anilha) {
+      return res.status(404).json({ message: 'Anilha não encontrada' });
+    }
+
+    anilha.name = name;
+    anilha.codigo = codigo;
+
+    await anilha.save();
+
+    res.status(200).json({ message: 'Anilha atualizada com sucesso', anilha });
+  } catch (error) {
+    console.error('Erro ao atualizar anilha cadastrada:', error);
+    res.status(500).json({ message: 'Erro interno do servidor' });
+  }
+};
+
+export const getAnilhaPendenteById = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+
+    const anilha = await AnilhaPendente.findByPk(id);
+    if (!anilha) {
+      return res.status(404).json({ message: 'Anilha não encontrada' });
+    }
+
+    res.status(200).json(anilha);
+  } catch (error) {
+    console.error('Erro ao buscar anilha cadastrada pelo ID:', error);
+    res.status(500).json({ message: 'Erro interno do servidor' });
+  }
+};
+
+export const excluirAnilhaPendente = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+
+    const anilha = await AnilhaPendente.findByPk(id);
+    if (!anilha) {
+      return res.status(404).json({ message: 'Anilha não encontrada' });
+    }
+
+    await anilha.destroy();
+
+    res.status(200).json({ message: 'Anilha excluída com sucesso' });
+  } catch (error) {
+    console.error('Erro ao excluir anilha cadastrada:', error);
+    res.status(500).json({ message: 'Erro interno do servidor' });
+  }
+};
+
+//#endregion
+
+//#region Anilhas Registros
+
 export const listarAnilhaRegistros = async (req: Request, res: Response) => {
   try {
     const registros = await AnilhaRegistro.findAll({
@@ -66,11 +192,21 @@ export const listarAnilhaRegistros = async (req: Request, res: Response) => {
   }
 };
 
-export const atualizarAnilhaCadastrada = async (req: Request, res: Response) => {};
-export const atualizarAnilhaPendente = async (req: Request, res: Response) => {};
-export const getAnilhaCadastradaById = async (req: Request, res: Response) => {};
-export const getAnilhaPendenteById = async (req: Request, res: Response) => {};
-export const getAnilhaRegistroById = async (req: Request, res: Response) => {};
-export const excluirAnilhaCadastrada = async (req: Request, res: Response) => {};
-export const excluirAnilhaPendente = async (req: Request, res: Response) => {};
-export const excluirAnilhaRegistro = async (req: Request, res: Response) => {};
+export const getAnilhaRegistroById = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+
+    const anilha = await AnilhaRegistro.findByPk(id);
+    if (!anilha) {
+      return res.status(404).json({ message: 'Anilha não encontrada' });
+    }
+
+    res.status(200).json(anilha);
+  } catch (error) {
+    console.error('Erro ao buscar anilha cadastrada pelo ID:', error);
+    res.status(500).json({ message: 'Erro interno do servidor' });
+  }
+};
+
+//#endregion
+
