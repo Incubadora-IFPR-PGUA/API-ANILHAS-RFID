@@ -6,6 +6,8 @@ import * as AnilhaController from "../controllers/AnilhaController";
 const router = Router();
 
 router.post("/inserirAnilha", AnilhaController.inserirAnilha);
+router.put('/pendente/:id', AnilhaController.acceptRequest);
+
 router.get("/listarAnilhaCadastradas", AnilhaController.listarAnilhaCadastradas);
 router.get("/listarAnilhaPendentes", AnilhaController.listarAnilhaPendentes);
 router.get("/listarAnilhaRegistros", AnilhaController.listarAnilhaRegistros);
@@ -16,6 +18,5 @@ router.get("/getAnilhaPendenteById/:id", AnilhaController.getAnilhaPendenteById)
 router.get("/getAnilhaRegistroById/:id", AnilhaController.getAnilhaRegistroById); 
 router.delete("/excluirAnilhaCadastrada/:id", AnilhaController.excluirAnilhaCadastrada);
 router.delete("/excluirAnilhaPendente/:id", AnilhaController.excluirAnilhaPendente);
-router.delete("/excluirAnilhaRegistro/:id", AnilhaController.excluirAnilhaRegistro);
 
 export default router;

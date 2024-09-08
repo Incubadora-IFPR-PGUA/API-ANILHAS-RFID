@@ -32,6 +32,28 @@ export const inserirAnilha = async (req: Request, res: Response) => {
   }
 };
 
+export const acceptRequest = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const pendente = await AnilhaPendente.findByPk(id);
+
+    if (pendente) {
+      const cadastro = await AnilhaCadastrada.create({
+        name: pendente.name,
+        codigo: pendente.codigo
+      });
+
+      await pendente.destroy();
+
+      return res.status(200).json({ message: 'Cadastro aceito e movido com sucesso.' });
+    } else {
+      return res.status(404).json({ message: 'Registro pendente não encontrado.' });
+    }
+  } catch (error) {
+    return res.status(500).json({ message: 'Erro ao processar a solicitação.', error });
+  }
+};
+
 //#region Anilhas Cadastradas
 
 export const listarAnilhaCadastradas = async (req: Request, res: Response) => {
