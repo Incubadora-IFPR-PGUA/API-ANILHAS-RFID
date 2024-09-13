@@ -5,7 +5,7 @@ import { AnilhaRegistro } from '../models/AnilhaRegistro';
 
 export const inserirAnilha = async (req: Request, res: Response) => {
   try {
-    const { codigo, name } = req.body;
+    const { codigo } = req.body;
 
     const anilhaCadastrada = await AnilhaCadastrada.findOne({ where: { codigo } });
 
@@ -21,7 +21,7 @@ export const inserirAnilha = async (req: Request, res: Response) => {
     if (!anilhaPendente) {
       await AnilhaPendente.create({ 
         codigo,
-        name,
+        name: "ANILHA NÃO IDENTIFICADA",
       });
     }
 
@@ -69,9 +69,7 @@ export const listarAnilhaCadastradas = async (req: Request, res: Response) => {
 export const atualizarAnilhaCadastrada = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const { name, codigo } = req.body;
-
-    console.log(id, name, codigo);
+    const { name } = req.body;
 
     const anilha = await AnilhaCadastrada.findByPk(id);
     if (!anilha) {
@@ -79,7 +77,6 @@ export const atualizarAnilhaCadastrada = async (req: Request, res: Response) => 
     }
 
     anilha.name = name;
-    anilha.codigo = codigo;
 
     await anilha.save();
 
@@ -143,9 +140,7 @@ export const listarAnilhaPendentes = async (req: Request, res: Response) => {
 export const atualizarAnilhaPendente = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const { name, codigo } = req.body;
-
-    console.log(id, name, codigo);
+    const { name } = req.body;
 
     const anilha = await AnilhaPendente.findByPk(id);
     if (!anilha) {
@@ -153,7 +148,6 @@ export const atualizarAnilhaPendente = async (req: Request, res: Response) => {
     }
 
     anilha.name = name;
-    anilha.codigo = codigo;
 
     await anilha.save();
 
@@ -231,4 +225,3 @@ export const getAnilhaRegistroById = async (req: Request, res: Response) => {
 };
 
 //#endregion
-
