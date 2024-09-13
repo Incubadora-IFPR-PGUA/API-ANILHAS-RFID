@@ -58,7 +58,9 @@ export const acceptRequest = async (req: Request, res: Response) => {
 
 export const listarAnilhaCadastradas = async (req: Request, res: Response) => {
   try {
-    const anilhas = await AnilhaCadastrada.findAll();
+    const anilhas = await AnilhaCadastrada.findAll({
+      order: [['name', 'ASC']],
+    });
     res.status(200).json(anilhas);
   } catch (error) {
     console.error('Erro ao listar anilhas cadastradas:', error);
@@ -199,6 +201,7 @@ export const excluirAnilhaPendente = async (req: Request, res: Response) => {
 export const listarAnilhaRegistros = async (req: Request, res: Response) => {
   try {
     const registros = await AnilhaRegistro.findAll({
+      order: [['updated_at', 'DESC']],
       include: [{ model: AnilhaCadastrada, as: 'cadastro' }],
     });
     res.status(200).json(registros);
