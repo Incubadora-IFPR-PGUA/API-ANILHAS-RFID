@@ -6,7 +6,7 @@ import * as AnilhaController from "../controllers/AnilhaController";
 const router = Router();
 
 router.post("/inserirAnilha", AnilhaController.inserirAnilha);
-router.put('/pendente/:id', AnilhaController.acceptRequest);
+router.post('/pendente/:id', AnilhaController.acceptRequest);
 
 router.get("/listarAnilhaCadastradas", AnilhaController.listarAnilhaCadastradas);
 router.get("/listarAnilhaPendentes", AnilhaController.listarAnilhaPendentes);
