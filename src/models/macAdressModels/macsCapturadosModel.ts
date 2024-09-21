@@ -1,29 +1,35 @@
 import { Model, DataTypes } from "sequelize";
-import { sequelize } from "../instances/mysql";
+import { sequelize } from "../../instances/mysql";
 
-export class AnilhaPendente extends Model {
+export class MacsCapturados extends Model {
   public id!: number;
-  public name!: string;
-  public codigo!: string;
+  public MAC!: string;
+  public fabricante!: string;
+  public data_hora_captura?: Date;
   public readonly created_at!: Date;
   public readonly updated_at!: Date;
-  public readonly deleted_at?: Date;
+  public readonly deleted_at!: Date;
 }
 
-AnilhaPendente.init(
+MacsCapturados.init(
   {
     id: {
       type: DataTypes.BIGINT.UNSIGNED,
       autoIncrement: true,
       primaryKey: true,
     },
-    name: {
+    MAC: {
       type: DataTypes.STRING(100),
       allowNull: false,
     },
-    codigo: {
+    fabricante: {
       type: DataTypes.STRING(10),
       allowNull: false,
+    },
+    data_hora_captura: {
+      type: DataTypes.DATE,
+      allowNull: true,
+      defaultValue: null,
     },
     created_at: {
       type: DataTypes.DATE,
@@ -38,13 +44,13 @@ AnilhaPendente.init(
     deleted_at: {
       type: DataTypes.DATE,
       allowNull: true,
+      defaultValue: null,
     },
   },
   {
     sequelize,
-    tableName: "anilhas_pendentes",
+    tableName: "macs_capturados",
     timestamps: true,
-    paranoid: true,
     createdAt: "created_at",
     updatedAt: "updated_at",
     deletedAt: "deleted_at",

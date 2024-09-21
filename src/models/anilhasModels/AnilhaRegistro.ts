@@ -1,6 +1,6 @@
 import { Model, DataTypes } from "sequelize";
-import { sequelize } from "../instances/mysql";
-import { AnilhaCadastrada } from './AnilhaCadastrada';
+import { sequelize } from "../../instances/mysql";
+import { AnilhaCadastrada } from "./AnilhaCadastrada";
 
 export class AnilhaRegistro extends Model {
   public id!: number;
@@ -40,4 +40,4 @@ AnilhaRegistro.init(
   }
 );
 
-AnilhaRegistro.belongsTo(AnilhaCadastrada, { as: 'cadastro', foreignKey: 'anilha_id' });
+AnilhaRegistro.belongsTo(AnilhaCadastrada, { as: "cadastro", foreignKey: "anilha_id" });
