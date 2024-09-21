@@ -1,15 +1,16 @@
 import { Model, DataTypes } from "sequelize";
-import { sequelize } from "../instances/mysql";
+import { sequelize } from "../../instances/mysql";
 
-export class AnilhaCadastrada extends Model {
+export class AnilhaPendente extends Model {
   public id!: number;
   public name!: string;
   public codigo!: string;
   public readonly created_at!: Date;
   public readonly updated_at!: Date;
+  public readonly deleted_at?: Date;
 }
 
-AnilhaCadastrada.init(
+AnilhaPendente.init(
   {
     id: {
       type: DataTypes.BIGINT.UNSIGNED,
@@ -34,11 +35,16 @@ AnilhaCadastrada.init(
       allowNull: true,
       defaultValue: null,
     },
+    deleted_at: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
   },
   {
     sequelize,
-    tableName: "anilhas_cadastros",
+    tableName: "anilhas_pendentes",
     timestamps: true,
+    paranoid: true,
     createdAt: "created_at",
     updatedAt: "updated_at",
     deletedAt: "deleted_at",
