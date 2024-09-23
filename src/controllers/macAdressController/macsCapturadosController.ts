@@ -4,7 +4,6 @@ import { MacsCapturados } from "../../models/macAdressModels/macsCapturadosModel
 import axios from "axios";
 
 // Inserir um novo MAC capturado
-// Inserir um novo MAC capturado
 export const inserirMacCapturado = async (req: Request, res: Response) => {
   try {
     const { MAC, data_hora_captura } = req.body;
@@ -39,7 +38,9 @@ export const inserirMacCapturado = async (req: Request, res: Response) => {
 // Listar todos os MACs capturados
 export const listarMacsCapturados = async (req: Request, res: Response) => {
   try {
-    const macs = await MacsCapturados.findAll();
+    const macs = await MacsCapturados.findAll({
+      order: [["created_at", "DESC"]],
+    });
     res.status(200).json(macs);
   } catch (error) {
     console.error("Erro ao listar MACs capturados:", error);
