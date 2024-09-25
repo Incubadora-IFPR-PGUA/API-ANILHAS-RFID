@@ -41,21 +41,17 @@ export const inserirMacCapturado = async (req: Request, res: Response) => {
 export const listarMacsCapturados = async (req: Request, res: Response) => {
   try {
     const macs = await MacsCapturados.findAll({
-<<<<<<< HEAD
       include: [
         {
           model: EspMacAdress,
           as: "esp_mac_adress" // Usar o alias definido nas associações
-          //attributes: ["id", "latitude", "longitude"] // Escolhe quais colunas trazer
+          // attributes: ["id", "latitude", "longitude"] // Escolhe quais colunas trazer
         }
-      ]
+      ],
+      order: [["created_at", "DESC"]] // Ordem correta aqui
     });
 
-=======
-      order: [["created_at", "DESC"]],
-    });
->>>>>>> 07e6c140b01741249109cb5cc40ecc5d5b6fae2e
-    res.status(200).json(macs);
+    res.status(200).json(macs); // Movido para fora do bloco try
   } catch (error) {
     console.error("Erro ao listar MACs capturados:", error);
     res.status(500).json({ message: "Erro ao listar MACs capturados" });
