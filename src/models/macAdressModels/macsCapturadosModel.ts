@@ -1,8 +1,10 @@
 import { Model, DataTypes } from "sequelize";
 import { sequelize } from "../../instances/mysql";
+import { EspMacAdress } from "./espMacAdressModel";
 
 export class MacsCapturados extends Model {
   public id!: number;
+  public id_fk_esp_macAdress?: number;
   public MAC!: string;
   public fabricante!: string;
   public data_hora_captura?: Date;
@@ -16,36 +18,40 @@ MacsCapturados.init(
     id: {
       type: DataTypes.BIGINT.UNSIGNED,
       autoIncrement: true,
-      primaryKey: true,
+      primaryKey: true
+    },
+    id_fk_esp_macAdress: {
+      type: DataTypes.BIGINT.UNSIGNED,
+      allowNull: true
     },
     MAC: {
       type: DataTypes.STRING(100),
-      allowNull: false,
+      allowNull: false
     },
     fabricante: {
-      type: DataTypes.STRING(10),
-      allowNull: false,
+      type: DataTypes.STRING(45),
+      allowNull: false
     },
     data_hora_captura: {
       type: DataTypes.DATE,
       allowNull: true,
-      defaultValue: null,
+      defaultValue: null
     },
     created_at: {
       type: DataTypes.DATE,
       allowNull: true,
-      defaultValue: null,
+      defaultValue: null
     },
     updated_at: {
       type: DataTypes.DATE,
       allowNull: true,
-      defaultValue: null,
+      defaultValue: null
     },
     deleted_at: {
       type: DataTypes.DATE,
       allowNull: true,
-      defaultValue: null,
-    },
+      defaultValue: null
+    }
   },
   {
     sequelize,
@@ -53,6 +59,6 @@ MacsCapturados.init(
     timestamps: true,
     createdAt: "created_at",
     updatedAt: "updated_at",
-    deletedAt: "deleted_at",
+    deletedAt: "deleted_at"
   }
 );

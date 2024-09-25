@@ -37,7 +37,6 @@ router.put("/atualizarMacCapturado/:id", MacsCapturadosController.atualizarMacCa
 router.delete("/excluirMacCapturado/:id", MacsCapturadosController.deletarMacCapturado); // Rota para excluir um MAC capturado por ID
 
 // Rotas para a horta inteligente (ESP32)
-
 router.post("/inserirHorta", HortaController.inserirHorta); // Inserir um novo registro da horta
 router.put("/atualizarHorta/:id", HortaController.atualizarHorta); // Atualizar um registro da horta pelo ID
 router.get("/listarHorta", HortaController.listarHorta); // Listar todos os registros da horta
