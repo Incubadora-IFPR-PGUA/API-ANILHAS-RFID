@@ -6,7 +6,7 @@ export class HortaModel extends Model {
   public umidade_solo!: number;
   public umidade_ar!: number;
   public temperatura_ar!: number;
-  public luz_ambiente!: boolean;
+  public luz_ambiente!: number;
   public hora_atualizacao!: Date;
   public readonly created_at!: Date;
   public readonly updated_at!: Date;
@@ -33,7 +33,7 @@ HortaModel.init(
       allowNull: false,
     },
     luz_ambiente: {
-      type: DataTypes.BOOLEAN,
+      type: DataTypes.FLOAT,
       allowNull: false,
     },
     hora_atualizacao: {
