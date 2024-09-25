@@ -36,7 +36,7 @@ export const inserirMacCapturado = async (req: Request, res: Response) => {
     }
   }
 };
-// Listar todos os MACs capturados
+
 // Listar todos os MACs capturados com o ESP que os capturou
 export const listarMacsCapturados = async (req: Request, res: Response) => {
   try {
