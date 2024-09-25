@@ -9,7 +9,7 @@ import * as HortaController from "../../controllers/smartHortaController/hortaCo
 const router = Router();
 
 //ANILHAS
-router.post("/inserirAnilha", AnilhaController.inserirAnilha);
+router.post("/  ", AnilhaController.inserirAnilha);
 router.post("/pendente/:id", AnilhaController.acceptRequest);
 router.get("/listarAnilhaCadastradas", AnilhaController.listarAnilhaCadastradas);
 router.get("/listarAnilhaPendentes", AnilhaController.listarAnilhaPendentes);
