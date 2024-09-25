@@ -4,10 +4,9 @@ import { MacsCapturados } from "../../models/macAdressModels/macsCapturadosModel
 import axios from "axios";
 
 // Inserir um novo MAC capturado
-// Inserir um novo MAC capturado
 export const inserirMacCapturado = async (req: Request, res: Response) => {
   try {
-    const { MAC, data_hora_captura } = req.body;
+    const { MAC, data_hora_captura, id_esp_macAdress } = req.body; // id_esp_macAdress opcional
 
     // Validar o MAC address
     if (!MAC) {
@@ -23,6 +22,7 @@ export const inserirMacCapturado = async (req: Request, res: Response) => {
       MAC,
       fabricante, // Salva o fabricante obtido
       data_hora_captura: data_hora_captura || new Date(), // Usa a data/hora atual se não for fornecida
+      id_fk_esp_macAdress: id_esp_macAdress || null // Só insere se for fornecido, caso contrário, null
     });
 
     res.status(201).json({ message: "MAC capturado inserido com sucesso", mac: novoMac });
@@ -37,16 +37,25 @@ export const inserirMacCapturado = async (req: Request, res: Response) => {
   }
 };
 // Listar todos os MACs capturados
+// Listar todos os MACs capturados com o ESP que os capturou
 export const listarMacsCapturados = async (req: Request, res: Response) => {
   try {
-    const macs = await MacsCapturados.findAll();
+    const macs = await MacsCapturados.findAll({
+      include: [
+        {
+          model: EspMacAdress,
+          as: "esp_mac_adress" // Usar o alias definido nas associações
+          //attributes: ["id", "latitude", "longitude"] // Escolhe quais colunas trazer
+        }
+      ]
+    });
+
     res.status(200).json(macs);
   } catch (error) {
     console.error("Erro ao listar MACs capturados:", error);
     res.status(500).json({ message: "Erro ao listar MACs capturados" });
   }
 };
-
 // Obter MAC capturado por ID
 export const obterMacPorId = async (req: Request, res: Response) => {
   try {
