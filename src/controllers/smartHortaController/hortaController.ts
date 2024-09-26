@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { HortaModel } from "../../models/smartHortaModels/hortaModel";
 
-// Inserir novo registro da horta
 export const inserirHorta = async (req: Request, res: Response) => {
   try {
     const { umidade_solo, umidade_ar, temperatura_ar, luz_ambiente } = req.body;
@@ -21,7 +20,6 @@ export const inserirHorta = async (req: Request, res: Response) => {
   }
 };
 
-// Atualizar um registro da horta pelo ID
 export const atualizarHorta = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
@@ -34,7 +32,7 @@ export const atualizarHorta = async (req: Request, res: Response) => {
       registro.umidade_ar = umidade_ar;
       registro.temperatura_ar = temperatura_ar;
       registro.luz_ambiente = luz_ambiente;
-      registro.hora_atualizacao = new Date(); // Atualizando a hora da última atualização
+      registro.hora_atualizacao = new Date();
 
       await registro.save();
 
@@ -48,7 +46,6 @@ export const atualizarHorta = async (req: Request, res: Response) => {
   }
 };
 
-// Listar todos os registros da horta
 export const listarHorta = async (req: Request, res: Response) => {
   try {
     const registros = await HortaModel.findAll({
@@ -77,7 +74,6 @@ export const obterHortaPorId = async (req: Request, res: Response) => {
   }
 };
 
-// Excluir um registro da horta pelo ID
 export const deletarHorta = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;

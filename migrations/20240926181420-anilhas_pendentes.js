@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("anilhas-pendencias", {
+    await queryInterface.createTable("anilhas_pendentes", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -13,23 +13,20 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      codigo: {
+      numero_anilha: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true
       },
-      motivo: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      dataCriacao: {
+      createdAt: {
         type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW
-      }
+        allowNull: false,
+        defaultValue: Sequelize.fn('NOW'), 
+      },
     });
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("anilhas-pendencias");
+    await queryInterface.dropTable("anilhas_pendentes");
   }
 };

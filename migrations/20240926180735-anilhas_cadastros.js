@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("anilhas-registros", {
+    await queryInterface.createTable("anilhas_cadastros", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -13,30 +13,29 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      codigo: {
+      numero_anilha: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true
       },
-      entrada: {
+      createdAt: {
         type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.fn('NOW'),
       },
-      saida: {
+      updatedAt: {
         type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.fn('NOW'),
       },
-      cadastroId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'anilhas-cadastros',
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL'
-      }
+      deletedAt: {
+        type: Sequelize.DATE,
+        allowNull: true,
+      },
     });
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("anilhas-registros");
+    await queryInterface.dropTable("anilhas_cadastros");
   }
 };

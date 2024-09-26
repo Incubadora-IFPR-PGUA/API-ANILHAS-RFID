@@ -36,11 +36,11 @@ router.get("/getMacCapturadoById/:id", MacsCapturadosController.obterMacPorId); 
 router.put("/atualizarMacCapturado/:id", MacsCapturadosController.atualizarMacCapturado); // Rota para atualizar um MAC capturado por ID
 router.delete("/excluirMacCapturado/:id", MacsCapturadosController.deletarMacCapturado); // Rota para excluir um MAC capturado por ID
 
-// Rotas para a horta inteligente (ESP32)
-router.post("/inserirHorta", HortaController.inserirHorta); // Inserir um novo registro da horta
-router.put("/atualizarHorta/:id", HortaController.atualizarHorta); // Atualizar um registro da horta pelo ID
-router.get("/listarHorta", HortaController.listarHorta); // Listar todos os registros da horta
-router.get("/getHortaById/:id", HortaController.obterHortaPorId); // Obter um registro específico da horta pelo ID
-router.delete("/excluirHorta/:id", HortaController.deletarHorta); // Excluir um registro da horta pelo ID
+// HORTA INTELIGENTE
+router.post("/inserirHorta", HortaController.inserirHorta);
+router.put("/atualizarHorta/:id", HortaController.atualizarHorta);
+router.get("/listarHorta", HortaController.listarHorta);
+router.get("/obterHortaPorId/:id", HortaController.obterHortaPorId); 
+router.delete("/deletarHorta/:id", HortaController.deletarHorta);
 
 export default router;
