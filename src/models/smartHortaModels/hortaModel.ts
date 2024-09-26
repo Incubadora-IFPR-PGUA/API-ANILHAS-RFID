@@ -59,7 +59,7 @@ HortaModel.init(
   },
   {
     sequelize,
-    tableName: "esp_smart_horta",
+    tableName: "smartHorta_esp",
     timestamps: true,
     createdAt: "created_at",
     updatedAt: "updated_at",
