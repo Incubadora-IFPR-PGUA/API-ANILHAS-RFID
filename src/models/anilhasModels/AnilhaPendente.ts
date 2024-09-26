@@ -7,7 +7,6 @@ export class AnilhaPendente extends Model {
   public codigo!: string;
   public readonly created_at!: Date;
   public readonly updated_at!: Date;
-  public readonly deleted_at?: Date;
 }
 
 AnilhaPendente.init(
@@ -35,10 +34,6 @@ AnilhaPendente.init(
       allowNull: true,
       defaultValue: null,
     },
-    deleted_at: {
-      type: DataTypes.DATE,
-      allowNull: true,
-    },
   },
   {
     sequelize,
@@ -47,6 +42,5 @@ AnilhaPendente.init(
     paranoid: true,
     createdAt: "created_at",
     updatedAt: "updated_at",
-    deletedAt: "deleted_at",
   }
 );

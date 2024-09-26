@@ -7,6 +7,7 @@ export class AnilhaCadastrada extends Model {
   public codigo!: string;
   public readonly created_at!: Date;
   public readonly updated_at!: Date;
+  public readonly deleted_at!: Date;
 }
 
 AnilhaCadastrada.init(
@@ -30,6 +31,11 @@ AnilhaCadastrada.init(
       defaultValue: null,
     },
     updated_at: {
+      type: DataTypes.DATE,
+      allowNull: true,
+      defaultValue: null,
+    },
+    deleted_at: {
       type: DataTypes.DATE,
       allowNull: true,
       defaultValue: null,
