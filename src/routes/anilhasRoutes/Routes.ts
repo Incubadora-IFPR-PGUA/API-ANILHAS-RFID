@@ -30,11 +30,11 @@ router.put("/atualizarEsp/:id", EspMacAdressController.atualizarEsp); // Atualiz
 router.delete("/deletarEsp/:id", EspMacAdressController.deletarEsp); // Deletar ESP por ID
 
 //MAC ADRESS (MAC)
-router.post("/inserirMacCapturado", MacsCapturadosController.inserirMacCapturado); // Rota para inserir um MAC capturado
-router.get("/listarMacsCapturados", MacsCapturadosController.listarMacsCapturados); // Rota para listar todos os MACs capturados
-router.get("/getMacCapturadoById/:id", MacsCapturadosController.obterMacPorId); // Rota para obter um MAC capturado por ID
-router.put("/atualizarMacCapturado/:id", MacsCapturadosController.atualizarMacCapturado); // Rota para atualizar um MAC capturado por ID
-router.delete("/excluirMacCapturado/:id", MacsCapturadosController.deletarMacCapturado); // Rota para excluir um MAC capturado por ID
+router.post("/inserirMacCapturado", MacsCapturadosController.inserirMacCapturado);
+router.get("/listarMacsCapturados", MacsCapturadosController.listarMacsCapturados);
+router.get("/obterMacPorId/:id", MacsCapturadosController.obterMacPorId);
+router.put("/atualizarMacCapturado/:id", MacsCapturadosController.atualizarMacCapturado);
+router.delete("/deletarMacCapturado/:id", MacsCapturadosController.deletarMacCapturado);
 
 // HORTA INTELIGENTE
 router.post("/inserirHorta", HortaController.inserirHorta);

@@ -55,7 +55,7 @@ MacsCapturados.init(
   },
   {
     sequelize,
-    tableName: "macs_capturados",
+    tableName: "macAddress_capturados",
     timestamps: true,
     createdAt: "created_at",
     updatedAt: "updated_at",

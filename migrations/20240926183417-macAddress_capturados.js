@@ -9,7 +9,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id_fk_macAdress_esp: {
+      id_fk_esp_macAdress: {
         type: Sequelize.INTEGER,
         allowNull: true,
       },
