@@ -130,7 +130,7 @@ export const excluirAnilhaCadastrada = async (req: Request, res: Response) => {
 export const listarAnilhaPendentes = async (req: Request, res: Response) => {
   try {
     const pendentes = await AnilhaPendente.findAll({
-      order: [["updated_at", "DESC"]],
+      order: [["updatedAt", "DESC"]],
     });
     res.status(200).json(pendentes);
   } catch (error) {
