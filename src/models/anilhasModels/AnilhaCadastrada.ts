@@ -3,11 +3,11 @@ import { sequelize } from "../../instances/mysql";
 
 export class AnilhaCadastrada extends Model {
   public id!: number;
-  public name!: string;
-  public codigo!: string;
-  public readonly created_at!: Date;
-  public readonly updated_at!: Date;
-  public readonly deleted_at!: Date;
+  public nome!: string;
+  public numero_anilha!: string;
+  public readonly createdAt!: Date;
+  public readonly updatedAt!: Date;
+  public readonly deletedAt!: Date;
 }
 
 AnilhaCadastrada.init(
@@ -17,25 +17,25 @@ AnilhaCadastrada.init(
       autoIncrement: true,
       primaryKey: true,
     },
-    name: {
+    nome: {
       type: DataTypes.STRING(100),
       allowNull: false,
     },
-    codigo: {
+    numero_anilha: {
       type: DataTypes.STRING(10),
       allowNull: false,
     },
-    created_at: {
+    createdAt: {
       type: DataTypes.DATE,
       allowNull: true,
       defaultValue: null,
     },
-    updated_at: {
+    updatedAt: {
       type: DataTypes.DATE,
       allowNull: true,
       defaultValue: null,
     },
-    deleted_at: {
+    deletedAt: {
       type: DataTypes.DATE,
       allowNull: true,
       defaultValue: null,
@@ -45,8 +45,5 @@ AnilhaCadastrada.init(
     sequelize,
     tableName: "anilhas_cadastros",
     timestamps: true,
-    createdAt: "created_at",
-    updatedAt: "updated_at",
-    deletedAt: "deleted_at",
   }
 );
