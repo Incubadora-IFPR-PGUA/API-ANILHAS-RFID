@@ -15,7 +15,7 @@ export class EspMacAdress extends Model {
 EspMacAdress.init(
   {
     id: {
-      type: DataTypes.BIGINT.UNSIGNED,
+      type: DataTypes.BIGINT.UNSIGNED,  
       autoIncrement: true,
       primaryKey: true
     },
