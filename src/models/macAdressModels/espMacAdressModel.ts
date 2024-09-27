@@ -49,7 +49,7 @@ EspMacAdress.init(
   },
   {
     sequelize,
-    tableName: "esp_macAdress",
+    tableName: "macAddress_esp",
     timestamps: true,
     createdAt: "created_at",
     updatedAt: "updated_at",

@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { EspMacAdress } from "../../models/macAdressModels/espMacAdressModel";
 
-// Inserir um novo ESP
 export const inserirEsp = async (req: Request, res: Response) => {
   try {
     const { latitude, longitude } = req.body;
@@ -18,7 +17,6 @@ export const inserirEsp = async (req: Request, res: Response) => {
   }
 };
 
-// Obter todos os ESPs
 export const listarEsp = async (req: Request, res: Response) => {
   try {
     const esps = await EspMacAdress.findAll();
@@ -29,7 +27,6 @@ export const listarEsp = async (req: Request, res: Response) => {
   }
 };
 
-// Obter ESP por ID
 export const obterEspPorId = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
@@ -46,7 +43,6 @@ export const obterEspPorId = async (req: Request, res: Response) => {
   }
 };
 
-// Atualizar ESP por ID
 export const atualizarEsp = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
@@ -69,7 +65,6 @@ export const atualizarEsp = async (req: Request, res: Response) => {
   }
 };
 
-// Deletar ESP por ID
 export const deletarEsp = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;

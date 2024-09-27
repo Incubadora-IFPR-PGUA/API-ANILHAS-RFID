@@ -5,11 +5,11 @@ import { MacsCapturados } from "./macsCapturadosModel";
 export const configurarAssociacoesMacAdress = () => {
   EspMacAdress.hasMany(MacsCapturados, {
     foreignKey: "id_fk_esp_macAdress",
-    as: "macs_capturados"
+    as: "macAddress_capturados"
   });
 
   MacsCapturados.belongsTo(EspMacAdress, {
     foreignKey: "id_fk_esp_macAdress",
-    as: "esp_mac_adress"
+    as: "macAddress_esp"
   });
 };
