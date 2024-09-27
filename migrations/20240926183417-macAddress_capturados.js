@@ -7,11 +7,17 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       id_fk_esp_macAdress: {
         type: Sequelize.INTEGER,
         allowNull: true,
+        references: {
+          model: "macAddress_esp",
+          key: "id",
+        },
+        onUpdate: "CASCADE",
+        onDelete: "SET NULL",
       },
       MAC: {
         type: Sequelize.STRING(100),
@@ -22,19 +28,19 @@ module.exports = {
         allowNull: false,
       },
       data_hora_captura: {
-        type: Sequelize.DATE, 
+        type: Sequelize.DATE,
         allowNull: true,
       },
       created_at: {
         type: Sequelize.DATE,
         allowNull: true,
-        defaultValue: Sequelize.fn('NOW'),
+        defaultValue: Sequelize.fn("NOW"),
       },
       updated_at: {
         type: Sequelize.DATE,
         allowNull: true,
-        defaultValue: Sequelize.fn('NOW'),
-        onUpdate: Sequelize.fn('NOW'), 
+        defaultValue: Sequelize.fn("NOW"),
+        onUpdate: Sequelize.fn("NOW"),
       },
       deleted_at: {
         type: Sequelize.DATE,
@@ -45,5 +51,5 @@ module.exports = {
 
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable("macAddress_capturados");
-  }
+  },
 };
