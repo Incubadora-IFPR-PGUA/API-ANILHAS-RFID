@@ -3,8 +3,8 @@ import { sequelize } from "../../instances/mysql";
 
 export class AnilhaPendente extends Model {
   public id!: number;
-  public name!: string;
-  public codigo!: string;
+  public nome!: string;
+  public numero_anilha!: string;
   public readonly created_at!: Date;
   public readonly updated_at!: Date;
 }
@@ -16,20 +16,20 @@ AnilhaPendente.init(
       autoIncrement: true,
       primaryKey: true,
     },
-    name: {
+    nome: {
       type: DataTypes.STRING(100),
       allowNull: false,
     },
-    codigo: {
+    numero_anilha: {
       type: DataTypes.STRING(10),
       allowNull: false,
     },
-    created_at: {
+    createdAt: {
       type: DataTypes.DATE,
       allowNull: true,
       defaultValue: null,
     },
-    updated_at: {
+    updatedAt: {
       type: DataTypes.DATE,
       allowNull: true,
       defaultValue: null,
@@ -39,8 +39,5 @@ AnilhaPendente.init(
     sequelize,
     tableName: "anilhas_pendentes",
     timestamps: true,
-    paranoid: true,
-    createdAt: "created_at",
-    updatedAt: "updated_at",
   }
 );

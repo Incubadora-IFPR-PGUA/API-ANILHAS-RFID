@@ -5,9 +5,9 @@ import { AnilhaRegistro } from "../../models/anilhasModels/AnilhaRegistro";
 
 export const inserirAnilha = async (req: Request, res: Response) => {
   try {
-    const { codigo } = req.body;
+    const { numero_anilha } = req.body;
 
-    const anilhaCadastrada = await AnilhaCadastrada.findOne({ where: { codigo } });
+    const anilhaCadastrada = await AnilhaCadastrada.findOne({ where: { numero_anilha } });
 
     if (anilhaCadastrada) {
       await AnilhaRegistro.create({
@@ -16,12 +16,12 @@ export const inserirAnilha = async (req: Request, res: Response) => {
       return res.status(200).json({ message: "Entrada registrada com sucesso" });
     }
 
-    const anilhaPendente = await AnilhaPendente.findOne({ where: { codigo } });
+    const anilhaPendente = await AnilhaPendente.findOne({ where: { numero_anilha } });
 
     if (!anilhaPendente) {
       await AnilhaPendente.create({
-        codigo,
-        name: "ANILHA NÃO IDENTIFICADA",
+        numero_anilha,
+        nome: "ANILHA NÃO IDENTIFICADA",
       });
     }
 
@@ -39,8 +39,8 @@ export const acceptRequest = async (req: Request, res: Response) => {
 
     if (pendente) {
       const cadastro = await AnilhaCadastrada.create({
-        name: pendente.name,
-        codigo: pendente.codigo,
+        nome: pendente.nome,
+        codigo: pendente.numero_anilha,
       });
 
       await pendente.destroy();
@@ -59,7 +59,7 @@ export const acceptRequest = async (req: Request, res: Response) => {
 export const listarAnilhaCadastradas = async (req: Request, res: Response) => {
   try {
     const anilhas = await AnilhaCadastrada.findAll({
-      order: [["name", "ASC"]],
+      order: [["nome", "ASC"]],
     });
     res.status(200).json(anilhas);
   } catch (error) {
@@ -78,7 +78,7 @@ export const atualizarAnilhaCadastrada = async (req: Request, res: Response) => 
       return res.status(404).json({ message: "Anilha não encontrada" });
     }
 
-    anilha.name = name;
+    anilha.nome = name;
 
     await anilha.save();
 
@@ -149,7 +149,7 @@ export const atualizarAnilhaPendente = async (req: Request, res: Response) => {
       return res.status(404).json({ message: "Anilha não encontrada" });
     }
 
-    anilha.name = name;
+    anilha.nome = name;
 
     await anilha.save();
 
