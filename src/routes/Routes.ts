@@ -1,26 +1,30 @@
 import { Router } from "express";
 import cors from "cors";
 
-import * as AnilhaController from "../controllers/anilhaController/AnilhaController";
+import * as AnilhaCadastroController from "../controllers/anilhaController/anilhaCadastroController";
 import * as EspMacAdressController from "../controllers/macAdressController/espMacAdressController";
 import * as MacsCapturadosController from "../controllers/macAdressController/macsCapturadosController";
 import * as HortaController from "../controllers/smartHortaController/hortaController";
 
 const router = Router();
 
-//ANILHAS
-router.post("/inserirAnilha", AnilhaController.inserirAnilha);
-router.post("/pendente/:id", AnilhaController.acceptRequest);
-router.get("/listarAnilhaCadastradas", AnilhaController.listarAnilhaCadastradas);
-router.get("/listarAnilhaPendentes", AnilhaController.listarAnilhaPendentes);
-router.get("/listarAnilhaRegistros", AnilhaController.listarAnilhaRegistros);
-router.put("/atualizarAnilhaCadastrada/:id", AnilhaController.atualizarAnilhaCadastrada);
+//ANILHAS (CADASTRO)
+router.get("/listarAnilhasCadastradas", AnilhaCadastroController.listarAnilhasCadastradas);
+router.get("/obterAnilhaCadastradaPorId/:id", AnilhaCadastroController.obterAnilhaCadastradaPorId);
+router.put("/atualizarAnilhaCadastrada/:id", AnilhaCadastroController.atualizarAnilhaCadastrada);
+router.delete("/deletarAnilhaCadastrada/:id", AnilhaCadastroController.deletarAnilhaCadastrada);
+
+//ANILHAS (PENDENTES)
+router.post("/inserirAnilha", AnilhaPendenteController.inserirAnilha);
 router.put("/atualizarAnilhaPendente/:id", AnilhaController.atualizarAnilhaPendente);
-router.get("/getAnilhaCadastradaById/:id", AnilhaController.getAnilhaCadastradaById);
-router.get("/getAnilhaPendenteById/:id", AnilhaController.getAnilhaPendenteById);
-router.get("/getAnilhaRegistroById/:id", AnilhaController.getAnilhaRegistroById);
-router.delete("/excluirAnilhaCadastrada/:id", AnilhaController.excluirAnilhaCadastrada);
+router.get("/listarAnilhaPendentes", AnilhaController.listarAnilhaPendentes);
 router.delete("/excluirAnilhaPendente/:id", AnilhaController.excluirAnilhaPendente);
+router.get("/getAnilhaPendenteById/:id", AnilhaController.getAnilhaPendenteById);
+router.post("/pendente/:id", AnilhaController.acceptRequest);
+
+//ANILHAS (REGISTROS)
+router.get("/getAnilhaRegistroById/:id", AnilhaController.getAnilhaRegistroById);
+router.get("/listarAnilhaRegistros", AnilhaController.listarAnilhaRegistros);
 
 // MAC ADRESS (ESP)
 router.post("/inserirEsp", EspMacAdressController.inserirEsp);
