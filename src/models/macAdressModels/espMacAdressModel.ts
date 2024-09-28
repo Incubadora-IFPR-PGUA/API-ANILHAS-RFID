@@ -50,6 +50,5 @@ EspMacAdress.init(
   {
     sequelize,
     tableName: "macAddress_esp",
-    timestamps: true,
   }
 );

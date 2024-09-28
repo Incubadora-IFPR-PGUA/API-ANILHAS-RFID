@@ -34,6 +34,5 @@ AnilhaRegistro.init(
   {
     sequelize,
     tableName: "anilhas_registros",
-    timestamps: true,
   }
 );
