@@ -9,27 +9,22 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      anilha_cadastro_id: {
+      id_fk_anilha_cadastrada: {
         type: Sequelize.INTEGER,
+        allowNull: true,
         references: {
-          model: 'anilhas_cadastros',
-          key: 'id'
+          model: "anilhas_cadastros",
+          key: "id",
         },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL'
+        onUpdate: "CASCADE",
+        onDelete: "SET NULL",
       },
-      entrada: {
-        type: Sequelize.DATE,
-      },
-      saida: {
-        type: Sequelize.DATE,
-      },
-      createdAt: {
+      created_at: {
         type: Sequelize.DATE,
         allowNull: false,
         defaultValue: Sequelize.fn('NOW'),
       },
-      updatedAt: {
+      updated_at: {
         type: Sequelize.DATE,
         allowNull: false,
         defaultValue: Sequelize.fn('NOW'),

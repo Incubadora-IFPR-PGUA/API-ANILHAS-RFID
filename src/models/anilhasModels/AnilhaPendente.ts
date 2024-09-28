@@ -24,12 +24,12 @@ AnilhaPendente.init(
       type: DataTypes.STRING(10),
       allowNull: false,
     },
-    createdAt: {
+    created_at: {
       type: DataTypes.DATE,
       allowNull: true,
       defaultValue: null,
     },
-    updatedAt: {
+    updated_at: {
       type: DataTypes.DATE,
       allowNull: true,
       defaultValue: null,
