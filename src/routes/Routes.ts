@@ -2,6 +2,8 @@ import { Router } from "express";
 import cors from "cors";
 
 import * as AnilhaCadastroController from "../controllers/anilhaController/anilhaCadastroController";
+import * as AnilhaPendenteController from "../controllers/anilhaController/anilhaPendenteController";
+import * as AnilhaRegistroController from "../controllers/anilhaController/anilhaRegistroController";
 import * as EspMacAdressController from "../controllers/macAdressController/espMacAdressController";
 import * as MacsCapturadosController from "../controllers/macAdressController/macsCapturadosController";
 import * as HortaController from "../controllers/smartHortaController/hortaController";
@@ -16,15 +18,15 @@ router.delete("/deletarAnilhaCadastrada/:id", AnilhaCadastroController.deletarAn
 
 //ANILHAS (PENDENTES)
 router.post("/inserirAnilha", AnilhaPendenteController.inserirAnilha);
-router.put("/atualizarAnilhaPendente/:id", AnilhaController.atualizarAnilhaPendente);
-router.get("/listarAnilhaPendentes", AnilhaController.listarAnilhaPendentes);
-router.delete("/excluirAnilhaPendente/:id", AnilhaController.excluirAnilhaPendente);
-router.get("/getAnilhaPendenteById/:id", AnilhaController.getAnilhaPendenteById);
-router.post("/pendente/:id", AnilhaController.acceptRequest);
+router.post("/aceitarPendente/:id", AnilhaPendenteController.aceitarPendente);
+router.get("/listarAnilhasPendentes", AnilhaPendenteController.listarAnilhasPendentes);
+router.get("/obterAnilhaPendentePorId/:id", AnilhaPendenteController.obterAnilhaPendentePorId);
+router.put("/atualizarAnilhaPendente/:id", AnilhaPendenteController.atualizarAnilhaPendente);
+router.delete("/deletarAnilhaPendente/:id", AnilhaPendenteController.deletarAnilhaPendente);
 
 //ANILHAS (REGISTROS)
-router.get("/getAnilhaRegistroById/:id", AnilhaController.getAnilhaRegistroById);
-router.get("/listarAnilhaRegistros", AnilhaController.listarAnilhaRegistros);
+router.get("/obterAnilhaRegistroPorId/:id", AnilhaRegistroController.obterAnilhaRegistroPorId);
+router.get("/listarAnilhaRegistros", AnilhaRegistroController.listarAnilhaRegistros);
 
 // MAC ADRESS (ESP)
 router.post("/inserirEsp", EspMacAdressController.inserirEsp);
