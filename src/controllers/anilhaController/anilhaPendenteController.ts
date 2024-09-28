@@ -11,7 +11,7 @@ export const inserirAnilha = async (req: Request, res: Response) => {
 
     if (anilhaCadastrada) {
       await AnilhaRegistro.create({
-        anilha_id: anilhaCadastrada.id,
+        id_fk_anilha_cadastrada: anilhaCadastrada.id,
       });
       return res.status(200).json({ message: "Entrada registrada com sucesso" });
     }
