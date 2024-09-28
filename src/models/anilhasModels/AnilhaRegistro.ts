@@ -4,7 +4,7 @@ import { AnilhaCadastrada } from "./AnilhaCadastrada";
 
 export class AnilhaRegistro extends Model {
   public id!: number;
-  public anilha_id!: number;
+  public id_fk_anilha_cadastrada?: number;
   public readonly created_at!: Date;
   public readonly updated_at!: Date;
 }
@@ -16,9 +16,9 @@ AnilhaRegistro.init(
       autoIncrement: true,
       primaryKey: true,
     },
-    anilha_id: {
+    id_fk_anilha_cadastrada: {
       type: DataTypes.BIGINT.UNSIGNED,
-      allowNull: false,
+      allowNull: true
     },
     created_at: {
       type: DataTypes.DATE,
@@ -35,9 +35,5 @@ AnilhaRegistro.init(
     sequelize,
     tableName: "anilhas_registros",
     timestamps: true,
-    createdAt: "created_at",
-    updatedAt: "updated_at",
   }
 );
-
-AnilhaRegistro.belongsTo(AnilhaCadastrada, { as: "cadastro", foreignKey: "anilha_id" });

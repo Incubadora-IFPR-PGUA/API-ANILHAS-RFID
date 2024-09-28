@@ -1,10 +1,10 @@
 import { Router } from "express";
 import cors from "cors";
 
-import * as AnilhaController from "../../controllers/anilhaController/AnilhaController";
-import * as EspMacAdressController from "../../controllers/macAdressController/espMacAdressController";
-import * as MacsCapturadosController from "../../controllers/macAdressController/macsCapturadosController";
-import * as HortaController from "../../controllers/smartHortaController/hortaController";
+import * as AnilhaController from "../controllers/anilhaController/AnilhaController";
+import * as EspMacAdressController from "../controllers/macAdressController/espMacAdressController";
+import * as MacsCapturadosController from "../controllers/macAdressController/macsCapturadosController";
+import * as HortaController from "../controllers/smartHortaController/hortaController";
 
 const router = Router();
 

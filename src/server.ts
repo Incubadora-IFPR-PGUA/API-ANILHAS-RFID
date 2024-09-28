@@ -2,8 +2,8 @@ import express, { Request, Response, ErrorRequestHandler } from "express";
 import path from "path";
 import dotenv from "dotenv";
 import cors from "cors";
-import apiRoutes from "./routes/anilhasRoutes/Routes";
-import { configurarAssociacoesMacAdress } from "./models/macAdressModels/associacoes";
+import apiRoutes from "./routes/Routes";
+import { configurarAssociacoesAnilhas, configurarAssociacoesMacAdress } from "./models/associacoes";
 import { sequelize } from "./instances/mysql"; // Conexão com o banco de dados
 
 dotenv.config();
@@ -35,6 +35,7 @@ const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
 app.use(errorHandler);
 // Configura as associações entre os modelos
 configurarAssociacoesMacAdress();
+configurarAssociacoesAnilhas();
 
 // Sincronizar com o banco de dados (opcional: force: true vai recriar as tabelas)
 // sequelize.sync({ alter: true }).then(() => {
