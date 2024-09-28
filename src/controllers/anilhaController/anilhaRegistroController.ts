@@ -7,7 +7,7 @@ export const listarAnilhaRegistros = async (req: Request, res: Response) => {
   try {
     const registros = await AnilhaRegistro.findAll({
       order: [["updated_at", "DESC"]],
-      include: [{ model: AnilhaCadastrada, as: "cadastro" }],
+      include: [{ model: AnilhaCadastrada, as: "anilha_cadastrada" }],
     });
     res.status(200).json(registros);
   } catch (error) {
