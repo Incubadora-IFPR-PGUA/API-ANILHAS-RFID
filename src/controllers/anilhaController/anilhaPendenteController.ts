@@ -40,7 +40,7 @@ export const aceitarPendente = async (req: Request, res: Response) => {
     if (pendente) {
       const cadastro = await AnilhaCadastrada.create({
         nome: pendente.nome,
-        codigo: pendente.numero_anilha,
+        numero_anilha: pendente.numero_anilha,
       });
 
       await pendente.destroy();
