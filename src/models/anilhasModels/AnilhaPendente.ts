@@ -38,6 +38,5 @@ AnilhaPendente.init(
   {
     sequelize,
     tableName: "anilhas_pendentes",
-    timestamps: true,
   }
 );

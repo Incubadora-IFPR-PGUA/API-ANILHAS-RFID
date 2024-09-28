@@ -44,6 +44,5 @@ AnilhaCadastrada.init(
   {
     sequelize,
     tableName: "anilhas_cadastros",
-    timestamps: true,
   }
 );

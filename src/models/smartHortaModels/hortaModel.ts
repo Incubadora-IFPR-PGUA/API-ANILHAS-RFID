@@ -60,6 +60,5 @@ HortaModel.init(
   {
     sequelize,
     tableName: "smartHorta_esp",
-    timestamps: true,
   }
 );
