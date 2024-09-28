@@ -73,7 +73,7 @@ export const obterAnilhaPendentePorId = async (req: Request, res: Response) => {
 export const listarAnilhasPendentes = async (req: Request, res: Response) => {
   try {
     const pendentes = await AnilhaPendente.findAll({
-      order: [["updatedAt", "DESC"]],
+      order: [["updated_at", "DESC"]],
     });
     res.status(200).json(pendentes);
   } catch (error) {
