@@ -34,12 +34,12 @@ export const inserirAnilha = async (req: Request, res: Response) => {
 
 export const aceitarPendente = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const { id, name } = req.params;
     const pendente = await AnilhaPendente.findByPk(id);
 
     if (pendente) {
       const cadastro = await AnilhaCadastrada.create({
-        nome: pendente.nome,
+        nome: name,
         numero_anilha: pendente.numero_anilha,
       });
 
