@@ -34,7 +34,8 @@ export const inserirAnilha = async (req: Request, res: Response) => {
 
 export const aceitarPendente = async (req: Request, res: Response) => {
   try {
-    const { id, name } = req.params;
+    const { id } = req.params;
+    const { name } = req.body
     const pendente = await AnilhaPendente.findByPk(id);
 
     if (pendente) {
