@@ -25,6 +25,11 @@ AnilhaCadastrada.init(
       type: DataTypes.STRING(10),
       allowNull: false,
     },
+    status: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    },
     created_at: {
       type: DataTypes.DATE,
       allowNull: true,
