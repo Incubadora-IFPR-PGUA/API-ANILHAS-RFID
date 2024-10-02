@@ -5,6 +5,7 @@ export class AnilhaCadastrada extends Model {
   public id!: number;
   public nome!: string;
   public numero_anilha!: string;
+  public status!: boolean;
   public readonly created_at!: Date;
   public readonly updated_at!: Date;
   public readonly deleted_at!: Date;

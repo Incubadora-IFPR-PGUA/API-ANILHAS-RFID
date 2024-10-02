@@ -5,7 +5,7 @@ import { AnilhaRegistro } from "../../models/anilhasModels/AnilhaRegistro";
 
 export const inserirAnilha = async (req: Request, res: Response) => {
   try {
-    const { numero_anilha } = req.body;
+    const { numero_anilha, status } = req.body;
 
     const anilhaCadastrada = await AnilhaCadastrada.findOne({ where: { numero_anilha } });
 
@@ -13,6 +13,12 @@ export const inserirAnilha = async (req: Request, res: Response) => {
       await AnilhaRegistro.create({
         id_fk_anilha_cadastrada: anilhaCadastrada.id,
       });
+
+      await AnilhaCadastrada.update(
+        { status: !anilhaCadastrada.status },
+        { where: { numero_anilha } } 
+      );
+
       return res.status(200).json({ message: "Entrada registrada com sucesso" });
     }
 
