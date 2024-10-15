@@ -12,6 +12,7 @@ const router = Router();
 
 //ANILHAS (CADASTRO)
 router.get("/listarAnilhasCadastradas", AnilhaCadastroController.listarAnilhasCadastradas);
+router.get("/listarAnilhasCadastradasEntrada", AnilhaCadastroController.listarAnilhasCadastradasEntrada);
 router.get("/obterAnilhaCadastradaPorId/:id", AnilhaCadastroController.obterAnilhaCadastradaPorId);
 router.put("/atualizarAnilhaCadastrada/:id", AnilhaCadastroController.atualizarAnilhaCadastrada);
 router.delete("/deletarAnilhaCadastrada/:id", AnilhaCadastroController.deletarAnilhaCadastrada);
