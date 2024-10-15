@@ -13,6 +13,18 @@ export const listarAnilhasCadastradas = async (req: Request, res: Response) => {
   }
 };
 
+export const listarAnilhasCadastradasEntrada = async (req: Request, res: Response) => {
+  try {
+    const anilhas = await AnilhaCadastrada.findAll({
+      order: [["updated_at", "DESC"]],
+    });
+    res.status(200).json(anilhas);
+  } catch (error) {
+    console.error("Erro ao listar anilhas cadastradas:", error);
+    res.status(500).json({ message: "Erro interno do servidor" });
+  }
+};
+
 export const obterAnilhaCadastradaPorId = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
