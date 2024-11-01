@@ -3,33 +3,57 @@ import { EspMacAdress } from "../../models/macAdressModels/espMacAdressModel";
 import { MacsCapturados } from "../../models/macAdressModels/macsCapturadosModel";
 import axios from "axios";
 
-export const inserirMacCapturado = async (req: Request, res: Response) => {
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
+export const inserirMacsCapturados = async (req: Request, res: Response) => {
   try {
-    const { MAC, data_hora_captura, id_esp_macAdress } = req.body;
+    const { macs } = req.body;
 
-    if (!MAC) {
-      return res.status(400).json({ message: "MAC address é obrigatório" });
+    if (!Array.isArray(macs) || macs.length === 0) {
+      return res.status(400).json({ message: "Um array de MACs é obrigatório" });
     }
 
-    const response = await axios.get(`https://api.macvendors.com/${MAC}`);
-    const fabricante = response.data;
+    const resultados = [];
 
-    const novoMac = await MacsCapturados.create({
-      MAC,
-      fabricante,
-      data_hora_captura: data_hora_captura || new Date(), 
-      id_fk_esp_macAdress: id_esp_macAdress || null
-    });
+    for (const macInfo of macs) {
+      const { MAC, data_hora_captura, id_esp_macAdress } = macInfo;
 
-    res.status(201).json({ message: "MAC capturado inserido com sucesso", mac: novoMac });
+      if (!MAC) {
+        return res.status(400).json({ message: "MAC address é obrigatório em todos os itens" });
+      }
+
+      try {
+        const response = await axios.get(`https://api.macvendors.com/${MAC}`);
+        const fabricante = response.data;
+
+        const novoMac = await MacsCapturados.create({
+          MAC,
+          fabricante,
+          data_hora_captura: data_hora_captura || new Date(),
+          id_fk_esp_macAdress: id_esp_macAdress || null,
+        });
+
+        resultados.push({ message: "MAC capturado inserido com sucesso", mac: novoMac });
+      } catch (error) {
+        if (axios.isAxiosError(error) && error.response?.status === 404) {
+          resultados.push({ message: "Fabricante não encontrado para o MAC fornecido", MAC });
+        } else {
+          console.error("Erro ao inserir MAC capturado:", error);
+          resultados.push({
+            message: "Erro ao inserir MAC capturado",
+            MAC,
+            error: error || "Erro desconhecido"
+          });
+        }
+      }
+
+      await delay(3000);
+    }
+
+    res.status(201).json(resultados);
   } catch (error) {
-    console.error("Erro ao inserir MAC capturado:", error);
-
-    if (axios.isAxiosError(error) && error.response?.status === 404) {
-      res.status(404).json({ message: "Fabricante não encontrado para o MAC fornecido" });
-    } else {
-      res.status(500).json({ message: "Erro ao inserir MAC capturado" });
-    }
+    console.error("Erro ao processar o array de MACs:", error);
+    res.status(500).json({ message: "Erro ao processar o array de MACs" });
   }
 };
 

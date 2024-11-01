@@ -38,7 +38,7 @@ router.put("/atualizarEsp/:id", EspMacAdressController.atualizarEsp);
 router.delete("/deletarEsp/:id", EspMacAdressController.deletarEsp);
 
 //MAC ADRESS (MAC)
-router.post("/inserirMacCapturado", MacsCapturadosController.inserirMacCapturado);
+router.post("/inserirMacsCapturados", MacsCapturadosController.inserirMacsCapturados);
 router.get("/listarMacsCapturados", MacsCapturadosController.listarMacsCapturados);
 router.get("/obterMacPorId/:id", MacsCapturadosController.obterMacPorId);
 router.put("/atualizarMacCapturado/:id", MacsCapturadosController.atualizarMacCapturado);
