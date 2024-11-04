@@ -36,7 +36,17 @@ export const inserirMacsCapturados = async (req: Request, res: Response) => {
         resultados.push({ message: "MAC capturado inserido com sucesso", mac: novoMac });
       } catch (error) {
         if (axios.isAxiosError(error) && error.response?.status === 404) {
-          resultados.push({ message: "Fabricante não encontrado para o MAC fornecido", MAC });
+
+          const fabricante = 'Não identificado'
+
+          const novoMacSemFabricante = await MacsCapturados.create({
+            MAC,
+            fabricante,
+            data_hora_captura: data_hora_captura || new Date(),
+            id_fk_esp_macAdress: id_esp_macAdress || null,
+          });
+          
+          resultados.push({ message: "Fabricante não encontrado para o MAC fornecido", MAC:novoMacSemFabricante });
         } else {
           console.error("Erro ao inserir MAC capturado:", error);
           resultados.push({
