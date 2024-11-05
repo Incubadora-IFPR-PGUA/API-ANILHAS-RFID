@@ -1,4 +1,3 @@
-import { Router } from "express";
 import cors from "cors";
 
 import * as AnilhaCadastroController from "../controllers/anilhaController/anilhaCadastroController";
