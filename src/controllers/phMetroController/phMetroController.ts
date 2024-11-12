@@ -39,10 +39,13 @@ export const criarPh = async (req: Request, res: Response) => {
     return res.status(500).json({ message: "Erro interno do servidor." });
   }
 };
+
 // Listar todos os registros de pH
 export const listarPhs = async (req: Request, res: Response) => {
   try {
-    const phs = await PhMetroModel.findAll();
+    const phs = await PhMetroModel.findAll({
+      order: [["updated_at", "DESC"]],
+    });
     return res.status(200).json(phs);
   } catch (error) {
     console.error("Erro ao listar registros de pH:", error);
