@@ -4,6 +4,7 @@ import { sequelize } from "../../instances/mysql";
 export class PhMetroModel extends Model {
   public id!: number;
   public ph!: number;
+  public id_fk_esp_macAdress?: number;
   public escala?: String;
   public data_hora_atualizacao?: Date;
   public readonly created_at!: Date;
@@ -24,6 +25,10 @@ PhMetroModel.init(
     },
     escala: {
       type: DataTypes.STRING,
+      allowNull: true
+    },
+    id_fk_esp_macAdress: {
+      type: DataTypes.BIGINT.UNSIGNED,
       allowNull: true
     },
     data_hora_atualizacao: {
