@@ -1,21 +1,17 @@
 import { PhMetroModel } from "../../models/phMetro/phMetroModel";
 import { Request, Response } from "express";
 
-// Criar um novo registro de pH
 export const criarPh = async (req: Request, res: Response) => {
   try {
-    let { ph } = req.body;
+    let { ph, id_esp_macAdress } = req.body;
+    let escala;
 
-    // Converter o valor de pH para número, caso seja enviado como string
     ph = parseFloat(ph);
 
-    // Verificar se o pH é um número válido
     if (isNaN(ph)) {
       return res.status(400).json({ message: "Valor de pH inválido." });
     }
 
-    // Definir a escala com base no valor de pH
-    let escala;
     if (ph < 7) {
       escala = "Ácido";
     } else if (ph === 7) {
@@ -24,13 +20,13 @@ export const criarPh = async (req: Request, res: Response) => {
       escala = "Alcalino";
     }
 
-    // Definir a data/hora de atualização como o momento atual
     const data_hora_atualizacao = new Date();
 
     const novoPh = await PhMetroModel.create({
       ph,
-      escala, // Escala definida automaticamente
-      data_hora_atualizacao // Hora de atualização definida no backend
+      escala,
+      data_hora_atualizacao,
+      id_fk_esp_macAdress: id_esp_macAdress || null,
     });
 
     return res.status(201).json(novoPh);
@@ -40,7 +36,6 @@ export const criarPh = async (req: Request, res: Response) => {
   }
 };
 
-// Listar todos os registros de pH
 export const listarPhs = async (req: Request, res: Response) => {
   try {
     const phs = await PhMetroModel.findAll({
