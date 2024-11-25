@@ -1,3 +1,4 @@
+import { EspMacAdress } from "../../models/macAdressModels/espMacAdressModel";
 import { PhMetroModel } from "../../models/phMetro/phMetroModel";
 import { Request, Response } from "express";
 
@@ -40,6 +41,7 @@ export const listarPhs = async (req: Request, res: Response) => {
   try {
     const phs = await PhMetroModel.findAll({
       order: [["updated_at", "DESC"]],
+      include: [{ model: EspMacAdress, as: "macAddress" }],
     });
     return res.status(200).json(phs);
   } catch (error) {

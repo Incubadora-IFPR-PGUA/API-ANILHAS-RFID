@@ -1,5 +1,6 @@
 import { Model, DataTypes } from "sequelize";
 import { sequelize } from "../../instances/mysql";
+import { EspMacAdress } from "../macAdressModels/espMacAdressModel";
 
 export class PhMetroModel extends Model {
   public id!: number;
@@ -62,3 +63,13 @@ PhMetroModel.init(
     paranoid: true
   }
 );
+
+PhMetroModel.belongsTo(EspMacAdress, {
+  foreignKey: 'id_fk_esp_macAdress',  // Nome da chave estrangeira
+  as: 'macAddress'  // Alias para a associação
+});
+
+EspMacAdress.hasMany(PhMetroModel, {
+  foreignKey: 'id_fk_esp_macAdress',
+  as: 'phMetros'  // Alias para a associação reversa
+});

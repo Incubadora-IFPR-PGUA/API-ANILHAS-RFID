@@ -4,6 +4,8 @@ import { MacsCapturados } from "./macsCapturadosModel";
 
 export class EspMacAdress extends Model {
   public id!: number;
+  public nome!: string;
+  public descricao!: string;
   public latitude!: string;
   public longitude!: string;
   public cliente_id?: number; // Inclui a FK cliente_id
@@ -18,6 +20,14 @@ EspMacAdress.init(
       type: DataTypes.BIGINT.UNSIGNED,  
       autoIncrement: true,
       primaryKey: true
+    },
+    nome: {
+      type: DataTypes.STRING(100),
+      allowNull: false
+    },
+    descricao: {
+      type: DataTypes.STRING(200),
+      allowNull: true
     },
     latitude: {
       type: DataTypes.STRING(100),
