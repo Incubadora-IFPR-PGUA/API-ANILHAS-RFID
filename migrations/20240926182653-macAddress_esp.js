@@ -9,6 +9,14 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      nome: {
+        type: Sequelize.STRING(100),
+        allowNull: false,
+      },
+      descricao: {
+        type: Sequelize.STRING(200),
+        allowNull: true,
+      },
       cliente_id: { //Futuramente ira ter um foreing key
         type: Sequelize.INTEGER,
         allowNull: true,
