@@ -50,7 +50,6 @@ export const listarPhs = async (req: Request, res: Response) => {
   }
 };
 
-// Buscar um registro de pH por ID
 export const buscarPhPorId = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
@@ -68,7 +67,6 @@ export const buscarPhPorId = async (req: Request, res: Response) => {
   }
 };
 
-// Atualizar um registro de pH por ID
 export const atualizarPh = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
@@ -93,7 +91,6 @@ export const atualizarPh = async (req: Request, res: Response) => {
   }
 };
 
-// Deletar um registro de pH por ID
 export const deletarPh = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;

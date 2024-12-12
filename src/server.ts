@@ -4,15 +4,17 @@ import dotenv from "dotenv";
 import cors from "cors";
 import apiRoutes from "./routes/Routes";
 import { configurarAssociacoesAnilhas, configurarAssociacoesMacAdress } from "./models/associacoes";
-import { sequelize } from "./instances/mysql"; // Conexão com o banco de dados
+import { sequelize } from "./instances/mysql";
+import { rotinaTratarPh } from "./routines/atualizaPhDados";
 
 dotenv.config();
 
 const app = express(); // Crie a instância do Express
 
 app.use(cors());
-
 app.use(express.static(path.join(__dirname, "../public")));
+
+rotinaTratarPh();
 
 //AQUI EU DIGO O FORMATO QUE EU QUERO A REQUISIÇÃO
 //app.use(express.urlencoded({ extended: true })); // USANDO URL ENCODED
