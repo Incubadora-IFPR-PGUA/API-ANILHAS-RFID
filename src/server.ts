@@ -14,8 +14,8 @@ const app = express(); // Crie a instância do Express
 app.use(cors());
 app.use(express.static(path.join(__dirname, "../public")));
 
-// rotinaTratarPh();
-rotinaTratarPhManualmente("12/12/2024");
+rotinaTratarPh();
+// rotinaTratarPhManualmente("12/12/2024");
 
 //AQUI EU DIGO O FORMATO QUE EU QUERO A REQUISIÇÃO
 //app.use(express.urlencoded({ extended: true })); // USANDO URL ENCODED
