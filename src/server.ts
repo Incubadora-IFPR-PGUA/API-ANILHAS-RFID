@@ -5,7 +5,7 @@ import cors from "cors";
 import apiRoutes from "./routes/Routes";
 import { configurarAssociacoesAnilhas, configurarAssociacoesMacAdress } from "./models/associacoes";
 import { sequelize } from "./instances/mysql";
-import { rotinaTratarPh } from "./routines/atualizaPhDados";
+import { rotinaTratarPh, rotinaTratarPhManualmente } from "./routines/atualizaPhDados";
 
 dotenv.config();
 
@@ -14,7 +14,8 @@ const app = express(); // Crie a instância do Express
 app.use(cors());
 app.use(express.static(path.join(__dirname, "../public")));
 
-rotinaTratarPh();
+// rotinaTratarPh();
+rotinaTratarPhManualmente("12/12/2024");
 
 //AQUI EU DIGO O FORMATO QUE EU QUERO A REQUISIÇÃO
 //app.use(express.urlencoded({ extended: true })); // USANDO URL ENCODED
