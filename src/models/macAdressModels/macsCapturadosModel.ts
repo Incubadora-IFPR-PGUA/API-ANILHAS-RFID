@@ -63,3 +63,8 @@ MacsCapturados.init(
     paranoid: true,
   }
 );
+
+MacsCapturados.belongsTo(EspMacAdress, {
+  foreignKey: 'id_fk_esp_macAdress',
+  as: 'macAddress'
+});

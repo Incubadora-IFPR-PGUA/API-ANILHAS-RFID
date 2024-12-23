@@ -65,11 +65,11 @@ PhMetroModel.init(
 );
 
 PhMetroModel.belongsTo(EspMacAdress, {
-  foreignKey: 'id_fk_esp_macAdress',  // Nome da chave estrangeira
-  as: 'macAddress'  // Alias para a associação
+  foreignKey: 'id_fk_esp_macAdress', 
+  as: 'macAddress' 
 });
 
 EspMacAdress.hasMany(PhMetroModel, {
   foreignKey: 'id_fk_esp_macAdress',
-  as: 'phMetros'  // Alias para a associação reversa
+  as: 'phMetros'
 });

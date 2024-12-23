@@ -70,14 +70,13 @@ export const inserirMacsCapturados = async (req: Request, res: Response) => {
 export const listarMacsCapturados = async (req: Request, res: Response) => {
   try {
     const macs = await MacsCapturados.findAll({
+      order: [["created_at", "DESC"]],
       include: [
         {
           model: EspMacAdress,
           as: "macAddress_esp"
-          // attributes: ["id", "latitude", "longitude"] // Escolhe quais colunas trazer
         }
       ],
-      order: [["created_at", "DESC"]]
     });
 
     res.status(200).json(macs);
