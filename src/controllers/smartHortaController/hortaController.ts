@@ -49,7 +49,7 @@ export const atualizarHorta = async (req: Request, res: Response) => {
 export const listarHorta = async (req: Request, res: Response) => {
   try {
     const registros = await HortaModel.findAll({
-      order: [["hora_atualizacao", "DESC"]],
+      order: [["horaAtualizacao", "DESC"]],
     });
     res.status(200).json({ data: registros });
   } catch (error) {
