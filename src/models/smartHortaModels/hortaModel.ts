@@ -38,8 +38,8 @@ HortaModel.init(
     },
     hora_atualizacao: {
       type: DataTypes.DATE,
+      field: "hora_atualizacao",
       allowNull: false,
-      defaultValue: DataTypes.NOW,
     },
     created_at: {
       type: DataTypes.DATE,
