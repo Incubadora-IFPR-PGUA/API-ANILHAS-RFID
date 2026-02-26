@@ -15,9 +15,9 @@ export const criarPh = async (req: Request, res: Response) => {
 
     if (ph < 7) {
       escala = "Ácido";
-    } else if (ph === 7) {
+    } else if (ph >= 7 && ph < 8) {
       escala = "Neutro";
-    } else if (ph > 7) {
+    } else if (ph >= 8) {
       escala = "Alcalino";
     }
 
