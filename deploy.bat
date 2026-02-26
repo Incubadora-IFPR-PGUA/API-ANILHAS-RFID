@@ -1,0 +1,3 @@
+@echo off
+echo Conectando-se ao servidor...
+ssh root@72.62.140.117 "cd .. && cd home && cd apivitrineprototipos && cd htdocs && cd apivitrineprototipos.incubadoraifpr.com.br && git pull && npx tsc && pm2 restart 1"
